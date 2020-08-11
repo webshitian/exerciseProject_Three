@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>递归</title>
+</head>
+<body>
+  <script>
+    // var a = 10;
+    // function f1(){
+    //   console.log('1111111111111');
+    //   console.log('1111111111111');
+    //   f2()
+    //   console.log('1111111111111');
+    //   console.log('1111111111111');
+    //   console.log('1111111111111');
+    // }
+    // function f2(){
+    //   console.log('22222222222222');
+    //   console.log('22222222222222');
+    //   f3()
+    //   console.log('22222222222222');
+    //   console.log('22222222222222');
+    //   console.log('22222222222222');
+    // }
+    // function f3(){
+    //   console.log('333333333333333');
+    //   console.log('333333333333333');
+    //   console.log('333333333333333');
+    //   console.log('333333333333333');
+    //   console.log('333333333333333');
+    // }
+    // f1();
+    // 函数只要调用，就会到函数定义的内部去执行里面的代码 
+    // 函数内部是可以调用另外一个函数的
+
+    // 在函数内部继承调用自己，这样的函数称为递归
+    // 递归多用于穷举的地方
+    var num = 0;
+    function f1(){
+      num++;
+      if(num>10){
+        return
+      }
+      console.log(num);
+      f1()
+    }
+
+    f1();
+  </script>
+</body>
+</html>
