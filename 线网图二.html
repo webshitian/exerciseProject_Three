@@ -6,70 +6,25 @@
     <title>Document</title>
     <style>
         #div1{
-            width: 17rem;height: 14rem;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden;
+            width: 780px;height: 400px;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden;
         }
         body{
             background: black;
         }
     </style>
-    <script src="./js/flexible.js"></script>
     <script>
-
         window.onload = function(){
             
-            // //创建命名空间
-            // var svgNS = 'http://www.w3.org/2000/svg';
-            // //获取父级div1
-            // var oParent = document.getElementById('div1')
-            // //创建标签
-            // var oSvg = document.createElementNS(svgNS,'svg');
-            
-            // //给svg标签添加属性
-            // oSvg.setAttribute('xmlns',svgNS);
-            // oSvg.setAttribute('width','100%');
-            // oSvg.setAttribute('height','100%');
 
-            // //把svg添加到div里面
-            // oParent.appendChild(oSvg);
 
             var svgNS = 'http://www.w3.org/2000/svg';
             var oParent = document.getElementById('div1');
-            var centerX = 50;
-            var centerY = 50;
-            // var centerX = oParent.offsetWidth/2;
-            // var centerY = oParent.offsetHeight/2;
+            var centerX = oParent.offsetWidth/2 - 350;
+            var centerY = oParent.offsetHeight/2 - 100;
+            var website = ['益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','福田'];
 
-            var circleNum = ['易车网','易车网','易车网','易车网','易车网','易车网','易车网'];
-            // var circleNum = ['易车网','易车网','易车网','易车网','易车网','易车网','易车网','易车网','易车网','易车网','易车网','易车网'];
-            // var angleNum = 390 / circleNum;
-            var centerR = 150;
             var otherData = [];
-            
-            //一共九个圆，就循环九次
-            for(var i = 0;i < circleNum.length;i++){
-                //sin(i*40*Math.PI/180)转成弧度
-                 var y = -0.1 * i + centerY;
-                 var x = 60 * i + centerX;
-                //  var x = 50 * i + centerX;
-                //  var y = Math.sin(i*40*Math.PI/180)*centerR + centerY;
-                //  var x = Math.cos(i*40*Math.PI/180)*centerR + centerX;
-                 otherData.push({ x:x, y:y, text:circleNum[i]});
-                 
-            }
-            
-            var data = {
-                centerNode:{text:'科鲁兹'},
-                otherNode:otherData
-                // otherNode:[
-                //     {x:100,y:100,text:'易车网'},
-                //     {x:200,y:50,text:'易网'},
-                //     {x:600,y:250,text:'svg'},
-                //     {x:100,y:300,text:'易车网'},
-                //     {x:200,y:150,text:'易网'},
-                //     {x:200,y:150,text:'易网'},
-                //     {x:600,y:350,text:'svg'},
-                // ]
-            }
+
 
             //封装一个创建标签的函数
             function createTag(tag,objAttr){
@@ -82,58 +37,85 @@
                 return oTag;
 
             }
-            //封装一个创建标签的方法
-            function addTag(){
+            
+   
+            for(var i = 0;i < website.length;i++){
+                
+                 var y = centerY;
+                 var x = i * 40 + centerX;
+                 otherData.push({ x:x, y:y, text:website[i]});
+                 
+            }
+            
+            var data = {
+                otherNode:otherData
+            }    
 
+            console.log('输出的data',data)
+
+
+
+             //封装一个创建标签的方法
+             function addTag(){
                 var oSvg = createTag('svg',{'xmlns':svgNS,'width':'100%','height':'100%'});
 
                 for(var i = 0;i < data.otherNode.length;i++){
                     //把每一个数据传过去，并添加到svg当中
                     addOtherTag(data.otherNode[i] , oSvg);
-                }
-
-                var oG = createTag('g',{'style':'cursor:pointer'});
-                var oCircle = createTag('circle',{'cx':centerX,'cy':centerY,'r':'40','fill':'white','stroke':'red','strole-width':'1'})
-                var oText = createTag('text',{'x':centerX,'y':centerY+8,'font-size':'20','text-anchor':'middle'});
-                //给文本添加内容
-                // oText.innerHTML = data.centerNode.text;
-
-                // oG.appendChild(oCircle);
-                oG.appendChild(oText);
-                oSvg.appendChild(oG);
+                }                
                 oParent.appendChild(oSvg);
+
             }
             addTag()
 
-            //创建重复部分的图形，圆形+线
             function addOtherTag(otherAttr , oSvg){
 
-                var oG = createTag('g',{'style':'cursor:pointer','class':'lineStyle'});
-                var oLine1 = createTag('line',{'x1':otherAttr.x ,'y1':otherAttr.y,'x2':centerX,'y2':centerY,'stroke':'#ccc'});
+                var oG = createTag('g',{'style':'cursor:pointer','class':'circleStyle'});
+                var oLine1 = createTag('line',{'x1':otherAttr.x,'y1':otherAttr.y,'x2':otherAttr.y,'y2':otherAttr.y - 50,'stroke':'#ccc'})
                 
-                var oCircle = createTag('circle',{'cx':otherAttr.x,'cy':otherAttr.y,'r':'10','fill':'white','stroke':'red','strole-width':'1'})
-                var oText = createTag('text',{'x':otherAttr.x,'y':otherAttr.y + 38,'font-size':'15','text-anchor':'middle'});
+                oG.appendChild(oLine1);
+                oSvg.appendChild(oG);
+
+
+                var oG = createTag('g',{'style':'cursor:pointer'});
+                var oCircle = createTag('circle',{'cx':otherAttr.x + 30,'cy':otherAttr.y,'r':'10','fill':'white','stroke':'red','strole-width':'1'})
+                var oText = createTag('text',{'x':otherAttr.x + 30,'y':otherAttr.y + 30,'fill':'white','font-size':'15','text-anchor':'middle'})
                 oText.innerHTML = otherAttr.text;
 
-                oG.appendChild(oLine1);
                 oG.appendChild(oCircle);
                 oG.appendChild(oText);
 
                 oSvg.appendChild(oG);
 
+                
+
             }
-            // addOtherTag()
+
+   
             
-            // bindTag();           
+            // var oLine1 = createTag('line',{'x1':'30','y1':'100','x2':'100','y2':'100','stroke':'#ccc'})
+           
+            // var oCircle = createTag('circle',{'cx':'60','cy':'100','r':'10','fill':'white','stroke':'red','strole-width':'1'})
+            // var oText = createTag('text',{'x':'60','y':'130','fill':'white','font-size':'15','text-anchor':'middle'})
+
+            // oText.innerHTML = '水贝站';
+            // oG.appendChild(oLine1);
+            // oG.appendChild(oCircle);
+            // oG.appendChild(oText);
+
+            // oSvg.appendChild(oG);
+            // oParent.appendChild(oSvg);
+
             
+
         }
     </script>
 </head>
 <body>
-
     <div id="div1">
 
     </div>
+    <script src="./js/flexible.js"></script>
 </body>
 </html>
 </html>

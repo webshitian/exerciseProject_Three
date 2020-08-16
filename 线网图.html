@@ -15,21 +15,6 @@
     <script>
         window.onload = function(){
             
-            // //创建命名空间
-            // var svgNS = 'http://www.w3.org/2000/svg';
-            // //获取父级div1
-            // var oParent = document.getElementById('div1')
-            // //创建标签
-            // var oSvg = document.createElementNS(svgNS,'svg');
-            
-            // //给svg标签添加属性
-            // oSvg.setAttribute('xmlns',svgNS);
-            // oSvg.setAttribute('width','100%');
-            // oSvg.setAttribute('height','100%');
-
-            // //把svg添加到div里面
-            // oParent.appendChild(oSvg);
-
             var svgNS = 'http://www.w3.org/2000/svg';
             var oParent = document.getElementById('div1');
             var centerX = oParent.offsetWidth/2;
@@ -201,7 +186,7 @@
                     //弹性公式
                     obj.speed += (overR - nowR) / 6;
                     //设置摩擦的系数,使圆的变化的速度慢下来
-                    obj.speed *= 0.9    ;
+                    obj.speed *= 0.9;
                     //if是停止条件，什么时候停
                     //满足两个条件停止，距离的绝对值小于等于1,然后是速度的绝对值小于等于1，说明它们是非常的近了，速度是非常的小
                     if( Math.abs(overR - nowR) <=1 && Math.abs(obj.speed) <=1){
