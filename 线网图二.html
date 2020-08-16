@@ -21,8 +21,13 @@
             var oParent = document.getElementById('div1');
             var centerX = oParent.offsetWidth/2 - 350;
             var centerY = oParent.offsetHeight/2 - 100;
-            var website = ['益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','益田','福田'];
-
+            var website = [
+                           '益田','石厦','购物公园','福田','少年宫','莲花村','华新','通新岭',
+                           '红岭','老街','晒布','翠竹','田贝','水贝','草埔','布吉','木棉湾',
+                           '大芬','丹竹头','六约','塘坑','横岗','永湖','荷坳','大运','爱联',
+                           '吉祥','龙城广场','南联','双龙'
+                           ];
+                  
             var otherData = [];
 
 
@@ -38,18 +43,68 @@
 
             }
             
-   
             for(var i = 0;i < website.length;i++){
-                
-                 var y = centerY;
-                 var x = i * 40 + centerX;
-                 otherData.push({ x:x, y:y, text:website[i]});
-                 
+               
+                var y = centerY;
+                var x = i * 40 + centerX;
+                otherData.push({ x:x, y:y, text:website[i]});
+                           
             }
+   
+            // for(var i = 0;i < website.length;i++){
+            //     if(website.length <= 12){
+
+            //         var y = centerY;
+            //         var x = i * 40 + centerX;
+            //         otherData.push({ x:x, y:y, text:website[i]});
+            //         i += 1;
+
+            //     }else if(12 < website.length <= 24){
+            //         console.log(123456)
+            //     }else if(24 < website.length <= 36){
+                    
+            //     }
+                                 
+            // }
             
             var data = {
                 otherNode:otherData
             }    
+            // var data = {
+            //     otherNode:[
+            //                 {x: 40, y: 100, text: "益田"},
+            //                 {x: 80, y: 100, text: "石厦"},
+            //                 {x: 120, y: 100, text: "购物公园"},
+            //                 {x: 160, y: 100, text: "福田"},
+            //                 {x: 200, y: 100, text: "少年宫"},
+            //                 {x: 240, y: 100, text: "莲花村"},
+            //                 {x: 280, y: 100, text: "华新"},
+            //                 {x: 320, y: 100, text: "通新岭"},
+            //                 {x: 360, y: 100, text: "红岭"},
+            //                 {x: 400, y: 100, text: "老街"},
+            //                 {x: 440, y: 100, text: "晒布"},
+            //                 {x: 480, y: 100, text: "翠竹"},
+            //                 {x: 40, y: 160, text: "田贝"},
+            //                 {x: 80, y: 160, text: "水贝"},
+            //                 {x: 120, y: 160, text: "草埔"},
+            //                 {x: 160, y: 160, text: "布吉"},
+            //                 {x: 200, y: 160, text: "木棉湾"},
+            //                 {x: 240, y: 160, text: "大芬"},
+            //                 {x: 280, y: 160, text: "丹竹头"},
+            //                 {x: 320, y: 160, text: "六约"},
+            //                 {x: 360, y: 160, text: "塘坑"},
+            //                 {x: 400, y: 160, text: "横岗"},
+            //                 {x: 440, y: 160, text: "永湖"},
+            //                 {x: 480, y: 160, text: "荷坳"},
+            //                 {x: 40, y: 220, text: "大运"},
+            //                 {x: 80, y: 220, text: "爱联"},
+            //                 {x: 120, y: 220, text: "吉祥"},
+            //                 {x: 160, y: 220, text: "龙城广场"},
+            //                 {x: 200, y: 220, text: "南联"},
+            //                 {x: 240, y: 220, text: "双龙"},
+                           
+            //                 ]
+            // }    
 
             console.log('输出的data',data)
 
@@ -71,23 +126,21 @@
             function addOtherTag(otherAttr , oSvg){
 
                 var oG = createTag('g',{'style':'cursor:pointer','class':'circleStyle'});
-                var oLine1 = createTag('line',{'x1':otherAttr.x,'y1':otherAttr.y,'x2':otherAttr.y,'y2':otherAttr.y - 50,'stroke':'#ccc'})
+                var oLine1 = createTag('line',{'x1':otherAttr.x,'y1':otherAttr.y,'x2':otherAttr.x + 60,'y2':otherAttr.y ,'stroke':'red'})
                 
                 oG.appendChild(oLine1);
                 oSvg.appendChild(oG);
 
 
                 var oG = createTag('g',{'style':'cursor:pointer'});
-                var oCircle = createTag('circle',{'cx':otherAttr.x + 30,'cy':otherAttr.y,'r':'10','fill':'white','stroke':'red','strole-width':'1'})
-                var oText = createTag('text',{'x':otherAttr.x + 30,'y':otherAttr.y + 30,'fill':'white','font-size':'15','text-anchor':'middle'})
+                var oCircle = createTag('circle',{'cx':otherAttr.x + 30,'cy':otherAttr.y,'r':'6','fill':'white','stroke':'red','strole-width':'1'})
+                var oText = createTag('text',{'x':otherAttr.x + 30,'y':otherAttr.y + 30,'fill':'white','font-size':'12','text-anchor':'middle'})
                 oText.innerHTML = otherAttr.text;
 
                 oG.appendChild(oCircle);
                 oG.appendChild(oText);
 
-                oSvg.appendChild(oG);
-
-                
+                oSvg.appendChild(oG); 
 
             }
 
