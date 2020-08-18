@@ -66,7 +66,19 @@
         }
     </style>
     <script>
-        
+        //js修改后端返回来数组里的对象属性名
+        var data = JSON.parse(JSON.stringify(res.data).replace(/alarmRank/g, 'name'))
+        var dataTwo = JSON.parse(JSON.stringify(data).replace(/alarmCount/g, 'value'))
+
+        //js修改后端返回来数组对象中的属性值
+        for(var i=0;i<dataTwo.length;i++){
+            if(dataTwo[i].name == "1"){
+                dataTwo[i].name = "故障";
+            }
+            if(dataTwo[i].name == "?"){
+                dataTwo[i].name = "监测设备未开启"
+            } 
+        }
     </script>
 </head>
 <body>
