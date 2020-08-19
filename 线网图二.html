@@ -43,68 +43,71 @@
 
             }
             
-            for(var i = 0;i < website.length;i++){
-               
-                var y = centerY;
-                var x = i * 40 + centerX;
-                otherData.push({ x:x, y:y, text:website[i]});
-                           
-            }
-   
             // for(var i = 0;i < website.length;i++){
-            //     if(website.length <= 12){
-
-            //         var y = centerY;
-            //         var x = i * 40 + centerX;
-            //         otherData.push({ x:x, y:y, text:website[i]});
-            //         i += 1;
-
-            //     }else if(12 < website.length <= 24){
-            //         console.log(123456)
-            //     }else if(24 < website.length <= 36){
-                    
-            //     }
-                                 
+                
+            //     var y = centerY;
+            //     var x = i * 40 + centerX;
+            //     otherData.push({ x:x, y:y, text:website[i]});
+                
+                           
             // }
+   
+            for(var i = 0;i < website.length;i++){
+                if(i <= 12){
+
+                    var y = centerY;
+                    var x = i * 40 + centerX;
+                    otherData.push({ x:x, y:y, text:website[i]});
+                    i += 1;
+
+                }
+                if(12 < website.length <= 24){
+                    console.log(123456)
+                }
+                if(24 < website.length <= 36){
+                    console.log(789)
+                }
+                                 
+            }
             
             var data = {
                 otherNode:otherData
             }    
-            var data = {
-                otherNode:[
-                            {x: 40, y: 100, text: "益田"},
-                            {x: 80, y: 100, text: "石厦"},
-                            {x: 120, y: 100, text: "购物公园"},
-                            {x: 160, y: 100, text: "福田"},
-                            {x: 200, y: 100, text: "少年宫"},
-                            {x: 240, y: 100, text: "莲花村"},
-                            {x: 280, y: 100, text: "华新"},
-                            {x: 320, y: 100, text: "通新岭"},
-                            {x: 360, y: 100, text: "红岭"},
-                            {x: 400, y: 100, text: "老街"},
-                            {x: 440, y: 100, text: "晒布"},
-                            {x: 480, y: 100, text: "翠竹"},
-                            {x: 40, y: 160, text: "田贝"},
-                            {x: 80, y: 160, text: "水贝"},
-                            {x: 120, y: 160, text: "草埔"},
-                            {x: 160, y: 160, text: "布吉"},
-                            {x: 200, y: 160, text: "木棉湾"},
-                            {x: 240, y: 160, text: "大芬"},
-                            {x: 280, y: 160, text: "丹竹头"},
-                            {x: 320, y: 160, text: "六约"},
-                            {x: 360, y: 160, text: "塘坑"},
-                            {x: 400, y: 160, text: "横岗"},
-                            {x: 440, y: 160, text: "永湖"},
-                            {x: 480, y: 160, text: "荷坳"},
-                            {x: 40, y: 220, text: "大运"},
-                            {x: 80, y: 220, text: "爱联"},
-                            {x: 120, y: 220, text: "吉祥"},
-                            {x: 160, y: 220, text: "龙城广场"},
-                            {x: 200, y: 220, text: "南联"},
-                            {x: 240, y: 220, text: "双龙"},
+            // var data = {
+            //     otherNode:[
+            //                 {x: 40, y: 100, text: "益田"},
+            //                 {x: 80, y: 100, text: "石厦"},
+            //                 {x: 120, y: 100, text: "购物公园"},
+            //                 {x: 160, y: 100, text: "福田"},
+            //                 {x: 200, y: 100, text: "少年宫"},
+            //                 {x: 240, y: 100, text: "莲花村"},
+            //                 {x: 280, y: 100, text: "华新"},
+            //                 {x: 320, y: 100, text: "通新岭"},
+            //                 {x: 360, y: 100, text: "红岭"},
+            //                 {x: 400, y: 100, text: "老街"},
+            //                 {x: 440, y: 100, text: "晒布"},
+            //                 {x: 480, y: 100, text: "翠竹"},
+            //                 {x: 40, y: 160, text: "田贝"},
+            //                 {x: 80, y: 160, text: "水贝"},
+            //                 {x: 120, y: 160, text: "草埔"},
+            //                 {x: 160, y: 160, text: "布吉"},
+            //                 {x: 200, y: 160, text: "木棉湾"},
+            //                 {x: 240, y: 160, text: "大芬"},
+            //                 {x: 280, y: 160, text: "丹竹头"},
+            //                 {x: 320, y: 160, text: "六约"},
+            //                 {x: 360, y: 160, text: "塘坑"},
+            //                 {x: 400, y: 160, text: "横岗"},
+            //                 {x: 440, y: 160, text: "永湖"},
+            //                 {x: 480, y: 160, text: "荷坳"},
+            //                 {x: 40, y: 220, text: "大运"},
+            //                 {x: 80, y: 220, text: "爱联"},
+            //                 {x: 120, y: 220, text: "吉祥"},
+            //                 {x: 160, y: 220, text: "龙城广场"},
+            //                 {x: 200, y: 220, text: "南联"},
+            //                 {x: 240, y: 220, text: "双龙"},
                            
-                            ]
-            }    
+            //                 ]
+            // }    
 
             console.log('输出的data',data)
 
