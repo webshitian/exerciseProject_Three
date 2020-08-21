@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script>
+        /**
+     * 商品属性类型
+     * 一个属性个数是不确定的
+     */
+    // var Spec = function(specName,specItems){
+    //     this.specName = specName; //属性名称
+    //     this.specItems = specItems;//数值值，是个数组，数组个数不确定
+    // }
+    
+    // var result = [];//组合成产品集
+    // /**
+    //  * 发布一款商品选择的一个属性，这是一个规格数组，数组个数不确定
+    //  * 根据这个选择的属性组合成不同的产品
+    //  */
+    // var selectSpec = [
+    //     {specName:'容量',specItems:['16G','64G','128G']},
+    //     {specName:'颜色',specItems:['土豪金','银色','黑色','pink']},
+    //     {specName:'网络',specItems:['联通','移动','电信']}
+    // ];
+    
+    // function combine(index, current){
+    //     if (index < selectSpec.length - 1){
+    //         var specItem = selectSpec[index];
+    //         var keya = specItem.specName;
+    //         var items = specItem.specItems;
+    //         if(items.length==0){
+    //             run(index + 1,current);
+    //             // console.log('测试',run);
+    //         }
+    //         for (var i = 0; i < items.length; i++){
+    //             if(!items[i])continue;
+    //             var newMap = {};
+    //             newMap = $.extend(newMap,current);
+    //             newMap[keya] = items[i];
+    //             run(index + 1,newMap);
+    //             // console.log('测试',run);
+    //         }
+    
+    //     }else if (index == selectSpec.length - 1){
+    //         var specItem = selectSpec[index];
+    //         var keya = specItem.specName;
+    //         var items = specItem.specItems;
+    //         if(items.length==0){
+    //             result.push(current);
+    //         }
+    //         for (var i = 0; i < items.length; i++){
+    //             if(!items[i])continue;
+    //             var newMap = {};
+    //             newMap = $.extend(newMap,current);
+    //             newMap[keya] = items[i];
+    //             result.push(newMap);
+    //         }
+    //     }
+    // }
+    
+    // // combine(0, {});
+    // console.info(result);
+        
+    // combine(0, {});
+    // console.info('商品的属性',result);
+
+
+    function cartesianProductOf() {
+        return Array.prototype.reduce.call(arguments,function(a, b) {
+        var ret = [];
+        a.forEach(function(a) {
+            b.forEach(function(b) {
+                ret.push(a.concat([b]));
+            });
+        });
+        return ret;
+        }, [[]]);
+    }
+    // console.log(cartesianProductOf(['1','3'],['a','b']))
+    var result = cartesianProductOf(['1','3'],['a','b'])
+    console.log('输出',result);
+</script>
+</body>
+</html>
