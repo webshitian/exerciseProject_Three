@@ -129,6 +129,15 @@
                 //给每一个圆循环加入鼠标移入事件和鼠标移出事件
                 for(var i = 0;i < aCircle.length; i ++){
 
+                    console.log('输出',aCircle[i].lastChild.innerHTML)
+
+                    if(aCircle[i].lastChild.innerHTML == '水贝'){
+                        var preaCircle = aCircle[i].firstChild;
+                        preaCircle.setAttribute('stroke','blue');
+                        preaCircle.setAttribute('fill','blue');
+                        console.log('输出',aCircle[i].innerHTML)
+                    }
+
                     aCircle[i].onmouseenter = function(){
 
                         var preoText = this.lastChild.innerHTML;
@@ -142,6 +151,9 @@
                         console.log('输出的值',preaCircle)
 
                         startMove(preaCircle, 6, 8)
+                        
+                        
+                        
 
                     };
                       
@@ -154,7 +166,15 @@
                         preaCircle.setAttribute('fill','#ffffff');
 
                         startMove(preaCircle, 8, 6)
+
+                        if(this.lastChild.innerHTML == '水贝'){
+                            var preaCircle = this.firstChild;
+                            preaCircle.setAttribute('stroke','blue');
+                            preaCircle.setAttribute('fill','blue');
+                        }
                     };
+
+                    
 
 
                 }
