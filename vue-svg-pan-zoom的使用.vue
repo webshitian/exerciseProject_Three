@@ -1,27 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./js/svg-pan-zoom.js"></script>
-    <style>
-        #div1{
-            width: 780px;height: 400px;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden;
-            /* width: 780px;height: 400px;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden; */
-        }
-        body{
-            background: black;
-        }
-    </style>
-    <script>
-        window.onload = function(){
-            
+<template>
+    <div class="box5">
+        <div class="box5_head">
+            <div></div>
+            <div class="box5_head_left">线网图</div>
+            <div class="box5_head_right">
+                <dv-border-box-7>
+                    <router-link 
+                      :to="{name:'stationMonitoringFirst'}" 
+                      style="text-decoration:none;"
+                      >
+                        <span class="span">详情</span>
+                    </router-link>    
+                </dv-border-box-7>
+            </div>
+        </div>
+        <div class="box5_content">
+            <div id="box5_content">
+                <SvgPanZoom
+                    style="width: 100%; height:100%;"
+                    :zoomEnabled="true"
+                    :controlIconsEnabled="true"
+                    :fit="true"
+                    :center="true"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width='100%' height='100%' id='svg-id'>
+                        <circle x="50" y="50" r="35" />
+                    </svg>
+                    
+                </SvgPanZoom>
+            </div>
+        </div>
+    </div>
+</template>
 
+<script>
+import SvgPanZoom from "vue-svg-pan-zoom";
+export default {
+    data(){
+      return{
+        
+      }
+    },
+    components:{
+        SvgPanZoom 
+    },
+    methods: {
+        
+        creatPublicSvg() {
+            
             var svgNS = 'http://www.w3.org/2000/svg';
-            var oParent = document.getElementById('div1');
-            var centerX = oParent.offsetWidth/2 - 350;
-            var centerY = oParent.offsetHeight/2 - 100;
+            var oParent = document.getElementById('box5_content');
+            var centerX = oParent.offsetWidth/2 - 250;
+            var centerY = oParent.offsetHeight/2 - 70;
+            // var centerX = oParent.offsetWidth/2 - 350;
+            // var centerY = oParent.offsetHeight/2 - 100;
             var website = [
                            '益田','石厦','购物公园','福田','少年宫','莲花村','华新','通新岭',
                            '红岭','老街','晒布','翠竹','田贝','水贝','草埔','布吉','木棉湾',
@@ -43,8 +75,7 @@
                 return oTag;
 
             }
-            
-            
+
             for(var i = 0;i < website.length;i++){
 
                 if(i <= 11){
@@ -83,13 +114,14 @@
 
              //封装一个创建标签的方法
              function addTag(){
-                var oSvg = createTag('svg',{'xmlns':svgNS,'width':'100%','height':'100%','class':'svg-id'});
+                var oSvg = document.getElementById('svg-id');
+                // var oSvg = createTag('svg',{'xmlns':svgNS,'width':'100%','height':'100%','class':'svg-id'});
 
                 for(var i = 0;i < data.otherNode.length;i++){
                     //把每一个数据传过去，并添加到svg当中
                     addOtherTag(data.otherNode[i] , oSvg);
                 }                
-                oParent.appendChild(oSvg);
+                // oParent.appendChild(oSvg);
 
             }
             addTag()
@@ -193,52 +225,81 @@
                     }
                 },30);
                 
-            }
+            }        
 
-            window.panZoomInstance = svgPanZoom('.svg-id', {
-                zoomEnabled: true,
-                controlIconsEnabled: true,
-                fit: true,
-                center: true,
-                minZoom: 0.1
-            });
-
+  
+    
             
-            // Zoom out
-            // 设置初始进入页面时线路图的大小
-            panZoomInstance.zoom(0.7);
-            // panZoomInstance.zoom(0.2);
-            // panZoomInstance.resize();
-            // panZoomInstance.center();
-            
-            function customPanBy(amount){ // {x: 1, y: 2}
-            var animationTime = 300 // ms
-                , animationStepTime = 15 // one frame per 30 ms
-                , animationSteps = animationTime / animationStepTime
-                , animationStep = 0
-                , intervalID = null
-                , stepX = amount.x / animationSteps
-                , stepY = amount.y / animationSteps 
-
-            intervalID = setInterval(function(){
-                    if (animationStep++ < animationSteps) {
-                    panZoomInstance.panBy({x: stepX, y: stepY})
-                    } else {
-                    // Cancel interval
-                    clearInterval(intervalID)
-                    }
-                }, animationStepTime)
-
-            }       
-
         }
-    </script>
-</head>
-<body>
-    <div id="div1">
+    },
+    mounted(){
+        // this.creatPublicSvg();
+    }
+}
+</script>
 
-    </div>
-    <script src="./js/flexible.js"></script>
-</body>
-</html>
-</html>
+<style scoped lang="less">
+body{
+    margin:0;
+}
+.box5{
+    width:100%;
+    height:14rem;
+    background-color: transparent;
+    // 盒子上部分
+    .box5_head{
+        display: flex;
+        justify-content: space-between;
+        padding:0.1rem 0.1rem;
+        // border: 1px solid red;
+
+        //标题的名字
+        .box5_head_left{
+            font-size:0.3rem;
+            color: #fff;
+            //标题是三个个字
+            margin-left: 1.3rem;
+            // margin-top:0.2rem;
+        }
+        //标题旁边两个按钮
+        .box5_head_right{
+            display: flex;         
+            .span{
+                display: block;
+                color:#fff;
+                width: 1rem;
+                height: 0.45rem;
+                text-align: center;
+                line-height: 0.45rem;
+                padding:0 0.1rem;
+                // margin-left: 0.2rem;
+                font-size:0.2rem;
+            }
+            // :first-child{
+            //     margin-right:0.1rem;
+            //     }     
+            }
+        }  
+    //盒子内容部分
+    .box5_content{
+        display:flex;
+        width: 98%;
+        // width: 7.67rem;
+        height: 2.8rem;
+        color: #fff;
+        // border: 1px solid red;
+        font-size: 0.2rem;
+        //设置地铁的图片
+        // background:url(subway.jpg);
+        background-size:100% 100%;
+        border: 1px solid red;
+        padding: 0.05rem;
+        #box5_content{
+            width: 100%;
+            height: 2.8rem;
+            padding: 0 0.05rem;
+        }
+    }
+}  
+
+</style>
