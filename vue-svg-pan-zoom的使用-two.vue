@@ -1,27 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./js/svg-pan-zoom.js"></script>
-    <style>
-        #div1{
-            width: 780px;height: 400px;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden;
-            /* width: 780px;height: 400px;background: url(./image/bg.jpg) no-repeat; margin: 20px auto; overflow: hidden; */
-        }
-        body{
-            background: black;
-        }
-    </style>
-    <script>
-        window.onload = function(){
-            
+<template>
+    <div class="box5">
+        <div class="box5_head">
+            <div></div>
+            <div class="box5_head_left">线网图</div>
+            <div class="box5_head_right">
+                <dv-border-box-7>
+                    <router-link 
+                      :to="{name:'stationMonitoringFirst'}" 
+                      style="text-decoration:none;"
+                      >
+                        <span class="span">详情</span>
+                    </router-link>    
+                </dv-border-box-7>
+            </div>
+        </div>
+        <div class="box5_content">
+            <div id="box5_content">
+               <!-- <iframe src="../../../../static/txt.ftl" style="width:100%; height:100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowTransparency="true"></iframe> -->
+            </div>
+        </div>
+    </div>
+</template>
 
+
+<script>
+
+export default {
+    data(){
+      return{
+        
+      }
+    },
+    components:{
+        // svgPanZoom
+    },
+    methods: {
+        
+        creatPublicSvg() {
+            console.log('输出',appendChild());
+            // svgPanZoom();
             var svgNS = 'http://www.w3.org/2000/svg';
-            var oParent = document.getElementById('div1');
-            var centerX = oParent.offsetWidth/2 - 350;
-            var centerY = oParent.offsetHeight/2 - 100;
+            var oParent = document.getElementById('box5_content');
+            var centerX = oParent.offsetWidth/2 - 250;
+            var centerY = oParent.offsetHeight/2 - 70;
+            // var centerX = oParent.offsetWidth/2 - 350;
+            // var centerY = oParent.offsetHeight/2 - 100;
             var website = [
                            '益田','石厦','购物公园','福田','少年宫','莲花村','华新','通新岭',
                            '红岭','老街','晒布','翠竹','田贝','水贝','草埔','布吉','木棉湾',
@@ -43,8 +66,7 @@
                 return oTag;
 
             }
-            
-            
+
             for(var i = 0;i < website.length;i++){
 
                 if(i <= 11){
@@ -102,13 +124,11 @@
                 oG.appendChild(oLine1);
                 oSvg.appendChild(oG);
 
+
                 var oG = createTag('g',{'style':'cursor:pointer','class':'circleStyle'});
                 var oCircle = createTag('circle',{'cx':otherAttr.x + 30,'cy':otherAttr.y,'r':'6','fill':'white','stroke':'red','strole-width':'1','fill':'#ffffff'})
                 var oText = createTag('text',{'x':otherAttr.x + 30,'y':otherAttr.y + 30,'fill':'white','font-size':'12','text-anchor':'middle','class':'oTextStyle'})
-                
                 oText.innerHTML = otherAttr.text;
-                
-                var OG = createTag('rect',{})
 
                 oG.appendChild(oCircle);
                 oG.appendChild(oText);
@@ -123,21 +143,13 @@
             //封装一个触发圆和线就会触发的方法
             function bindTag(){
 
+
                 //获取圆的元素
                 var aCircle = document.getElementsByClassName('circleStyle');
                 //获取文本的元素
                 var oText = document.getElementsByClassName('oTextStyle')
                 //给每一个圆循环加入鼠标移入事件和鼠标移出事件
                 for(var i = 0;i < aCircle.length; i ++){
-
-                    console.log('输出',aCircle[i].lastChild.innerHTML)
-
-                    if(aCircle[i].lastChild.innerHTML == '水贝'){
-                        var preaCircle = aCircle[i].firstChild;
-                        preaCircle.setAttribute('stroke','blue');
-                        preaCircle.setAttribute('fill','blue');
-                        console.log('输出',aCircle[i].innerHTML)
-                    }
 
                     aCircle[i].onmouseenter = function(){
 
@@ -152,9 +164,6 @@
                         console.log('输出的值',preaCircle)
 
                         startMove(preaCircle, 6, 8)
-                        
-                        
-                        
 
                     };
                       
@@ -167,13 +176,8 @@
                         preaCircle.setAttribute('fill','#ffffff');
 
                         startMove(preaCircle, 8, 6)
-
-                        if(this.lastChild.innerHTML == '水贝'){
-                            var preaCircle = this.firstChild;
-                            preaCircle.setAttribute('stroke','blue');
-                            preaCircle.setAttribute('fill','blue');
-                        }
                     };
+
 
                 }
 
@@ -211,52 +215,116 @@
                     }
                 },30);
                 
-            }
+            }        
 
-            window.panZoomInstance = svgPanZoom('.svg-id', {
-                zoomEnabled: true,
-                controlIconsEnabled: true,
-                fit: true,
-                center: true,
-                minZoom: 0.1
-            });
+            // window.panZoomInstance = svgPanZoom('#svg-id', {
+            //     zoomEnabled: true,
+            //     controlIconsEnabled: true,
+            //     fit: true,
+            //     center: true,
+            //     minZoom: 0.1
+            // });
 
             
             // Zoom out
             // 设置初始进入页面时线路图的大小
-            panZoomInstance.zoom(0.7);
+            // panZoomInstance.zoom(0.7);
             // panZoomInstance.zoom(0.2);
             // panZoomInstance.resize();
             // panZoomInstance.center();
             
-            function customPanBy(amount){ // {x: 1, y: 2}
-            var animationTime = 300 // ms
-                , animationStepTime = 15 // one frame per 30 ms
-                , animationSteps = animationTime / animationStepTime
-                , animationStep = 0
-                , intervalID = null
-                , stepX = amount.x / animationSteps
-                , stepY = amount.y / animationSteps 
+            // function customPanBy(amount){ // {x: 1, y: 2}
+            //     var animationTime = 300 // ms
+            //         , animationStepTime = 15 // one frame per 30 ms
+            //         , animationSteps = animationTime / animationStepTime
+            //         , animationStep = 0
+            //         , intervalID = null
+            //         , stepX = amount.x / animationSteps
+            //         , stepY = amount.y / animationSteps 
 
-            intervalID = setInterval(function(){
-                    if (animationStep++ < animationSteps) {
-                    panZoomInstance.panBy({x: stepX, y: stepY})
-                    } else {
-                    // Cancel interval
-                    clearInterval(intervalID)
-                    }
-                }, animationStepTime)
+            //     intervalID = setInterval(function(){
+            //             if (animationStep++ < animationSteps) {
+            //             panZoomInstance.panBy({x: stepX, y: stepY})
+            //             } else {
+            //             // Cancel interval
+            //             clearInterval(intervalID)
+            //             }
+            //         }, animationStepTime)
 
-            }       
-
+            // }      
+            
         }
-    </script>
-</head>
-<body>
-    <div id="div1">
+    },
+    mounted(){
+        
+        this.creatPublicSvg();
+    }
+}
+</script>
 
-    </div>
-    <script src="./js/flexible.js"></script>
-</body>
-</html>
-</html>
+<style scoped lang="less">
+body{
+    margin:0;
+}
+.box5{
+    width:100%;
+    height:14rem;
+    background-color: transparent;
+    // 盒子上部分
+    .box5_head{
+        display: flex;
+        justify-content: space-between;
+        padding:0.1rem 0.1rem;
+        // border: 1px solid red;
+
+        //标题的名字
+        .box5_head_left{
+            font-size:0.3rem;
+            color: #fff;
+            //标题是三个个字
+            margin-left: 1.3rem;
+            // margin-top:0.2rem;
+        }
+        //标题旁边两个按钮
+        .box5_head_right{
+            display: flex;         
+            .span{
+                display: block;
+                color:#fff;
+                width: 1rem;
+                height: 0.45rem;
+                text-align: center;
+                line-height: 0.45rem;
+                padding:0 0.1rem;
+                // margin-left: 0.2rem;
+                font-size:0.2rem;
+            }
+            // :first-child{
+            //     margin-right:0.1rem;
+            //     }     
+            }
+        }  
+    //盒子内容部分
+    .box5_content{
+        display:flex;
+        width: 98%;
+        // width: 7.67rem;
+        height: 2.8rem;
+        color: #fff;
+        // border: 1px solid red;
+        font-size: 0.2rem;
+        //设置地铁的图片
+        // background:url(subway.jpg);
+        background-size:100% 100%;
+        // border: 1px solid red;
+        padding: 0.05rem;
+        #box5_content{
+            width: 100%;
+            height: 2.8rem;
+            padding: 0 0.05rem;
+            
+        }
+    }
+}  
+
+</style>
